@@ -1,0 +1,38 @@
+[
+  {
+    "classNo": 7,
+    "title": "Sensor and Motor Test Log",
+    "deliverable": "A short lab note with calibration constants, 10-second sensor logs, motor-test observations, and safety-check notes.",
+    "emphasis": "Correct wiring, stable serial logging, and meaningful raw-to-angle conversion."
+  },
+  {
+    "classNo": 8,
+    "title": "LQR/MPC Experiment Comparison",
+    "deliverable": "A report comparing LQR and MPC time-domain responses, input saturation behavior, and tuning choices.",
+    "emphasis": "Quantitative plots, Q/R choices, MPC constraints, and discussion of hardware behavior."
+  },
+  {
+    "classNo": 9,
+    "title": "Observer-Based Control Study",
+    "deliverable": "A comparison of angle-difference velocities, Luenberger estimates, and Kalman estimates inside LQR/MPC control loops.",
+    "emphasis": "Observer tuning, noise sensitivity, transient response, and stability observations."
+  },
+  {
+    "classNo": 10,
+    "title": "RL Training Study",
+    "deliverable": "Training curves, evaluation plots, and a short discussion of DQN/PPO/TD3 hyperparameter effects in simulation.",
+    "emphasis": "Reward design, exploration, convergence, and reproducibility."
+  },
+  {
+    "classNo": 11,
+    "title": "Sim-to-Real Deployment Analysis",
+    "deliverable": "Hardware deployment logs and a simulation-to-hardware comparison for at least one trained RL policy.",
+    "emphasis": "Calibration, mismatch diagnosis, quantitative metrics, and safety constraints."
+  },
+  {
+    "classNo": 12,
+    "title": "Hybrid Control Final Demonstration",
+    "deliverable": "Final demo result, hybrid switching analysis, and comparison against pure model-driven or pure RL controllers.",
+    "emphasis": "Switching logic, residual correction, robustness, and live-demo performance."
+  }
+]

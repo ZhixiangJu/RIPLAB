@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule · AI-Enabled Control Engineering</title>
+  <meta name="description" content="Course website for AI-Enabled Control Engineering, PKU College of Engineering GLOBEX Summer Program.">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="Course home">
+      <span class="brand-mark">AI</span>
+      <span class="brand-text"><strong>AI-Enabled Control Engineering</strong><span>PKU GLOBEX Summer Program</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="lectures.html">Slides</a>
+      <a href="code.html">RIP Code</a>
+      <a href="tasks.html">Lab Tasks</a>
+      <a href="resources.html">Resources</a>
+      <a href="staff.html">Staff</a>
+    </div>
+  </nav>
+</header>
+<main class="container">
+  <div class="section-head"><div><h2>Course schedule</h2><p>Classes 6--12 form the hardware-centered laboratory sequence of the AI-Enabled Control Engineering course.</p></div></div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Class</th><th>Theme</th><th>Core topics</th><th>Lab outcome</th></tr></thead>
+    <tbody>
+      <tr><td>6</td><td>Hardware introduction and modeling</td><td>RIP platform, sensors, motor driver, STM32, nonlinear dynamics, linearization</td><td>Board setup and firmware upload</td></tr>
+      <tr><td>7</td><td>Assembly, sensor test, and Bellman bridge</td><td>Wiring, calibration, logging, motor test, Bellman, HJB, LQR, MPC, RL</td><td>Calibrated sensor and motor logs</td></tr>
+      <tr><td>8</td><td>LQR and MPC practice</td><td>Sampled-data model, velocity filtering, LQR gain, MPC constraints, STM32 solver</td><td>LQR/MPC hardware comparison</td></tr>
+      <tr><td>9</td><td>Observer design</td><td>Luenberger observer, Kalman observer, observer-based LQR/MPC</td><td>Estimated-state control logs</td></tr>
+      <tr><td>10</td><td>RL simulation training</td><td>DQN, PPO, TD3, custom RIP environment, training/evaluation pipeline</td><td>Trained policy and evaluation curves</td></tr>
+      <tr><td>11</td><td>RL sim-to-real deployment</td><td>Model export, firmware deployment, deployment logger, mismatch diagnosis</td><td>Hardware RL deployment data</td></tr>
+      <tr><td>12</td><td>Hybrid control and final demo</td><td>DQN+MPC, DQN+PPO, switching logic, residual model correction</td><td>Final live demonstration</td></tr>
+    </tbody>
+  </table></div>
+</main>
+<footer class="footer">
+  <div class="container">
+    <div><strong>AI-Enabled Control Engineering</strong><br>GLOBEX Summer Program · College of Engineering, Peking University</div>
+    <div>Instructor: Xun Huang · TAs: Zhixiang Ju, Haozhe Wang</div>
+  </div>
+</footer>
+<script src="assets/js/course-data.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

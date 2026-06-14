@@ -1,0 +1,980 @@
+\documentclass[aspectratio=169]{beamer}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{listings}
+\usetikzlibrary{positioning,calc,arrows.meta,fit}
+
+% =========================
+% Colors
+% =========================
+\definecolor{PKUDarkPurple}{RGB}{63,63,191}
+\definecolor{PKULightPurple}{RGB}{170,170,225}
+\definecolor{PKUGrayBg}{RGB}{255,255,255}
+\definecolor{PKUTextBlue}{RGB}{45,45,190}
+\definecolor{CodeGray}{RGB}{245,245,245}
+\definecolor{dkgreen}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% =========================
+% Global style
+% =========================
+\setbeamercolor{background canvas}{bg=PKUGrayBg}
+\setbeamercolor{normal text}{fg=black,bg=PKUGrayBg}
+\setbeamercolor{frametitle}{fg=PKUTextBlue,bg=PKUGrayBg}
+
+\setbeamerfont{normal text}{size=\fontsize{15pt}{18pt}\selectfont}
+\setbeamerfont{frametitle}{size=\fontsize{15pt}{19pt}\selectfont,series=\bfseries}
+\setbeamerfont{itemize/enumerate body}{size=\fontsize{12pt}{15pt}\selectfont}
+\setbeamerfont{itemize/enumerate subbody}{size=\fontsize{11pt}{14pt}\selectfont}
+\setbeamerfont{footline}{size=\fontsize{10pt}{12pt}\selectfont}
+
+\setbeamercolor{itemize item}{fg=PKUDarkPurple}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[ball]
+
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+
+% =========================
+% Code style
+% =========================
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{CodeGray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  columns=fullflexible
+}
+
+% =========================
+% Custom headline
+% =========================
+\newcommand{\makecustomheadline}{
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[PKUDarkPurple]
+        (current page.north west)
+        rectangle
+        ([xshift=.50\paperwidth,yshift=-0.35cm]current page.north west);
+
+    \fill[PKULightPurple]
+        ([xshift=.50\paperwidth]current page.north west)
+        rectangle
+        ([xshift=\paperwidth,yshift=-0.35cm]current page.north west);
+\end{tikzpicture}
+}
+
+% =========================
+% Custom footline
+% =========================
+\newcommand{\makecustomfootline}{
+\begin{tikzpicture}[remember picture,overlay]
+    \fill[PKUDarkPurple]
+        (current page.south west)
+        rectangle
+        ([xshift=.33\paperwidth,yshift=0.42cm]current page.south west);
+
+    \fill[PKULightPurple]
+        ([xshift=.33\paperwidth]current page.south west)
+        rectangle
+        ([xshift=.67\paperwidth,yshift=0.42cm]current page.south west);
+
+    \fill[PKULightPurple]
+        ([xshift=.67\paperwidth]current page.south west)
+        rectangle
+        ([xshift=\paperwidth,yshift=0.42cm]current page.south west);
+
+    \node[anchor=center, text=white, font=\small]
+        at ([xshift=.165\paperwidth,yshift=0.21cm]current page.south west)
+        {\textrm{huangxun@pku.edu.cn}};
+
+    \node[anchor=center, text=white, font=\small]
+        at ([xshift=.50\paperwidth,yshift=0.21cm]current page.south west)
+        {AI Enabled Control Engineering};
+
+    \node[anchor=center, text=black, font=\small]
+        at ([xshift=.83\paperwidth,yshift=0.21cm]current page.south west)
+        {2026 Summer};
+
+    \node[anchor=center, text=black, font=\small]
+        at ([xshift=.965\paperwidth,yshift=0.21cm]current page.south west)
+        {\insertframenumber/\inserttotalframenumber};
+\end{tikzpicture}
+}
+
+\addtobeamertemplate{background}{\makecustomheadline\makecustomfootline}{}
+
+% =========================
+% Helpers
+% =========================
+\newcommand{\smallblue}[1]{\textcolor{PKUTextBlue}{#1}}
+\newcommand{\mat}[1]{\mathbf{#1}}
+
+% =========================
+% Title info
+% =========================
+\title{\textcolor{PKUTextBlue}{AI Enabled Control Engineering}}
+\author{\textcolor{blue}{Professor Xun Huang}}
+\institute{
+Aeronautics and Astronautics\\
+College of Engineering\\
+Peking University\\[0.25cm]
+huangxun@pku.edu.cn\\
+https://xunger99.github.io/xunger/
+}
+\date{}
+
+\setbeamertemplate{title page}{
+    \vspace{1.0cm}
+    \begin{center}
+        {\fontsize{18}{22}\selectfont\bfseries \inserttitle\par}
+        \vspace{0.3cm}
+        {\fontsize{15}{18}\selectfont Lecture 8: Optimal Control Experiments on the Rotary Inverted Pendulum\par}
+        \vspace{0.3cm}
+        {\fontsize{15}{18}\selectfont \insertauthor\par}
+        \vspace{0.15cm}
+        {\fontsize{11}{13}\selectfont TA: Zhixiang Ju \quad Haozhe Wang\par}
+        \vspace{0.4cm}
+        {\fontsize{8}{11}\selectfont \insertinstitute\par}
+    \end{center}
+}
+
+\begin{document}
+
+% ---------------------------------
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Recap: from Class 7 to Class 8}
+\begin{itemize}
+    \item In Class 7, we assembled the real rotary inverted pendulum circuit.
+    \vspace{0.25cm}
+    \item We tested the potentiometer, encoder, DC motor, and data logging pipeline.
+    \vspace{0.25cm}
+    \item We connected Bellman's optimality principle to HJB, LQR, MPC, and Q-learning.
+    \vspace{0.25cm}
+    \item Today we use model-based optimal control to stabilize the real hardware.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Lecture 8}
+\begin{itemize}
+    \item Review the local linear model of the rotary inverted pendulum.
+    \vspace{0.28cm}
+    \item Derive the discrete infinite-horizon LQR controller.
+    \vspace{0.28cm}
+    \item Compute the LQR gain and deploy it to the real STM32 system.
+    \vspace{0.28cm}
+    \item Introduce linear MPC as constrained finite-horizon optimal control.
+    \vspace{0.28cm}
+    \item Run the MPC real-hardware experiment and compare it with LQR.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Learning objectives}
+By the end of this lab, students should be able to:
+\vspace{0.25cm}
+\begin{itemize}
+    \item explain why LQR and MPC are local stabilizing controllers for the upright region;
+    \vspace{0.2cm}
+    \item compute a discrete-time LQR feedback gain from matrices $A_d,B_d,Q,R$;
+    \vspace{0.2cm}
+    \item understand how low-pass filtered angle differences provide angular-velocity estimates;
+    \vspace{0.2cm}
+    \item modify the firmware constants and run a real LQR balancing experiment;
+    \vspace{0.2cm}
+    \item understand how MPC adds finite-horizon prediction and PWM constraints.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Experimental simplification}
+\begin{alertblock}{No swing-up in this class}
+\small
+In this experiment, we do not use DQN and we do not use an automatic swing-up stage.
+\end{alertblock}
+
+\vspace{0.25cm}
+
+\begin{itemize}
+    \item The controller is only valid near the upright equilibrium.
+    \vspace{0.25cm}
+    \item Students should gently hold the pendulum close to the upright position.
+    \vspace{0.25cm}
+    \item Then run the Python script and press Enter in the terminal to send the \texttt{GO} command.
+    \vspace{0.25cm}
+    \item After \texttt{GO}, STM32 records the startup arm position as $\theta=0$ and starts closed-loop control.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{From continuous model to sampled-data model}
+
+The physical rotary inverted pendulum is a continuous-time system:
+\[
+\dot{x}(t)=Ax(t)+Bu(t).
+\]
+
+
+
+However, the STM32 controller does not update the motor command continuously.
+
+
+
+In our experiment:
+\[
+T_s=0.005\ \mathrm{s},
+\qquad
+f_s=200\ \mathrm{Hz}.
+\]
+
+
+
+During one sampling interval, the PWM command is held constant:
+\[
+u(t)=u_k,
+\qquad
+t\in[kT_s,(k+1)T_s).
+\]
+
+
+
+\begin{block}{Key point}
+\small
+The controller runs in discrete time. Therefore, the LQR and MPC gains used on STM32 should be computed from the discrete model, not directly from the continuous model.
+\end{block}
+
+\end{frame}
+
+
+
+
+% ---------------------------------
+\begin{frame}{Zero-order-hold discretization}
+
+For the continuous-time linear model
+\[
+\dot{x}(t)=Ax(t)+Bu(t),
+\]
+with zero-order hold input \(u(t)=u_k\), the exact sampled model is
+\[
+x_{k+1}=A_d x_k+B_d u_k.
+\]
+
+
+
+The matrices are
+\[
+A_d=e^{AT_s},
+\]
+\[
+B_d=\int_0^{T_s}e^{A\tau}B\,d\tau.
+\]
+
+
+
+In Python, students can compute them by
+\[
+(A_d,B_d)=\texttt{cont2discrete}(A,B,T_s).
+\]
+
+
+
+
+
+\end{frame}
+
+
+
+
+
+% ---------------------------------
+
+% ---------------------------------
+\begin{frame}{How do we get angular velocities?}
+The sensors directly measure only two angles:
+\[
+\theta_k,
+\qquad
+\alpha_k.
+\]
+
+\vspace{0.2cm}
+
+In this class, use angle difference with low-pass filtering:
+\[
+\dot\theta^{\mathrm{raw}}_k
+=
+\frac{\theta_k-\theta_{k-1}}{T_s},
+\qquad
+\dot\alpha^{\mathrm{raw}}_k
+=
+\frac{\mathrm{wrap}(\alpha_k-\alpha_{k-1})}{T_s}.
+\]
+
+\vspace{0.2cm}
+
+Then apply first-order low-pass filtering:
+\[
+\dot\theta_k=(1-\lambda)\dot\theta_{k-1}+\lambda\dot\theta^{\mathrm{raw}}_k,
+\]
+\[
+\dot\alpha_k=(1-\lambda)\dot\alpha_{k-1}+\lambda\dot\alpha^{\mathrm{raw}}_k.
+\]
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Why low-pass filtering is necessary}
+\begin{itemize}
+    \item Direct difference amplifies sensor noise.
+    \vspace{0.25cm}
+    \item Potentiometer quantization and encoder count jumps may produce noisy velocity estimates.
+    \vspace{0.25cm}
+    \item LQR and MPC both use the full state $x=[\theta,\dot\theta,\alpha,\dot\alpha]^\top$.
+    \vspace{0.25cm}
+    \item Therefore, velocity estimates must be smooth enough for real-time feedback.
+\end{itemize}
+
+\vspace{0.25cm}
+\begin{block}{Practical choice}
+\small
+The firmware uses a fixed low-pass coefficient. Students can compare different filtering strengths after the basic experiment works.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{LQR problem setup}
+For the discrete linear system
+\[
+x_{k+1}=A_d x_k+B_d u_k,
+\]
+choose the infinite-horizon quadratic cost
+\[
+J=\sum_{k=0}^{\infty}
+\left(
+x_k^\top Qx_k+u_k^\top Ru_k
+\right).
+\]
+
+\vspace{0.2cm}
+
+Here
+\[
+Q\succeq 0,
+\qquad
+R\succ0.
+\]
+
+\vspace{0.2cm}
+\begin{block}{Physical meaning}
+\small
+$Q$ penalizes state deviation from the upright equilibrium. $R$ penalizes large PWM commands.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Choosing $Q$ and $R$ for the RIP}
+The state order is
+\[
+x=\begin{bmatrix}\theta&\dot\theta&\alpha&\dot\alpha\end{bmatrix}^\top.
+\]
+
+A typical choice is
+\[
+Q=\mathrm{diag}(1,\ 0.05,
+80,\ 2),
+\qquad
+R=0.001.
+\]
+
+\vspace{0.2cm}
+\begin{itemize}
+    \item $q_\alpha$ is large because the pendulum angle is the most critical state.
+    \vspace{0.18cm}
+    \item $q_{\dot\alpha}$ suppresses pendulum angular velocity.
+    \vspace{0.18cm}
+    \item $q_\theta$ limits long-term arm drift.
+    \vspace{0.18cm}
+    \item $R$ controls how aggressively the motor is used.
+\end{itemize}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Discrete LQR value function}
+Assume the optimal value function has a quadratic form:
+\[
+V(x_k)=x_k^\top P x_k,
+\qquad
+P=P^\top\succeq0.
+\]
+
+Bellman's optimality principle gives
+\[
+V(x_k)=\min_{u_k}
+\left\{
+x_k^\top Qx_k+u_k^\top Ru_k+V(x_{k+1})
+\right\}.
+\]
+
+\vspace{0.15cm}
+
+Using
+\[
+x_{k+1}=A_dx_k+B_du_k,
+\]
+we obtain
+\[
+x_k^\top P x_k
+=\min_{u_k}
+\left\{
+x_k^\top Qx_k+u_k^\top Ru_k
++(A_dx_k+B_du_k)^\top P(A_dx_k+B_du_k)
+\right\}.
+\]
+\end{frame}
+
+% Fix for beamer parsing: define empty macro used above
+% ---------------------------------
+\begin{frame}{LQR feedback gain}
+The terms depending on $u_k$ are quadratic:
+\[
+u_k^\top(R+B_d^\top PB_d)u_k
++2u_k^\top B_d^\top PA_dx_k.
+\]
+
+\vspace{0.2cm}
+
+Taking derivative with respect to $u_k$ and setting it to zero gives
+\[
+(R+B_d^\top PB_d)u_k+B_d^\top PA_dx_k=0.
+\]
+
+\vspace{0.2cm}
+
+Thus
+\[
+u_k^*=-Kx_k,
+\]
+where
+\[
+K=(R+B_d^\top PB_d)^{-1}B_d^\top PA_d.
+\]
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Discrete algebraic Riccati equation}
+The matrix $P$ satisfies the discrete algebraic Riccati equation:
+\[
+P
+=
+A_d^\top P A_d
+-
+A_d^\top P B_d
+(R+B_d^\top P B_d)^{-1}
+B_d^\top P A_d
++Q.
+\]
+
+\vspace{0.2cm}
+
+After solving for $P$, compute
+\[
+K=(R+B_d^\top PB_d)^{-1}B_d^\top PA_d.
+\]
+
+\vspace{0.2cm}
+\begin{alertblock}{For this lab}
+\small
+We use infinite-horizon discrete LQR. Therefore, we solve the algebraic Riccati equation and do not need a terminal condition $P(T)=H$.
+\end{alertblock}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}[fragile]{Student task: compute the LQR gain}
+Students should find or load the model matrices $A_d$ and $B_d$ from the provided code or handout.
+
+\vspace{0.15cm}
+
+Then compute the gain in Python:
+\begin{lstlisting}[basicstyle=\ttfamily\tiny]
+import numpy as np
+from scipy.linalg import solve_discrete_are
+
+Q = np.diag([1.0, 0.05, 80.0, 2.0])
+R = np.array([[0.001]])
+
+P = solve_discrete_are(Ad, Bd, Q, R)
+K = np.linalg.inv(R + Bd.T @ P @ Bd) @ (Bd.T @ P @ Ad)
+print(K)
+\end{lstlisting}
+
+\vspace{0.12cm}
+\begin{block}{Output}
+\small
+The result is a row vector $K=[k_\theta,k_{\dot\theta},k_\alpha,k_{\dot\alpha}]$.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{How to put $K$ into firmware}
+The control law is
+\[
+u_k=-Kx_k.
+\]
+
+For our firmware, insert the four gains into:
+\[
+K_\theta,
+\quad
+K_{\dot\theta},
+\quad
+K_\alpha,
+\quad
+K_{\dot\alpha}.
+\]
+
+\vspace{0.2cm}
+
+Then the firmware computes
+\[
+u_{
+m raw}
+=-(K_\theta\theta
++K_{\dot\theta}\dot\theta
++K_\alpha\alpha
++K_{\dot\alpha}\dot\alpha).
+\]
+
+\vspace{0.2cm}
+
+Finally, the PWM command is saturated:
+\[
+u=\mathrm{sat}(u_{
+m raw},-u_{\max},u_{\max}).
+\]
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{LQR hardware experiment: preparation}
+
+\begin{enumerate}
+    \item Upload the LQR firmware to STM32.
+    \vspace{0.18cm}
+
+    \item Calibrate the potentiometer zero position:
+    hold the pendulum upright, read the current raw value, and update \texttt{POT\_ZERO} in the firmware.
+    \vspace{0.18cm}
+
+    \item Upload the firmware again after modifying \texttt{POT\_ZERO}.
+    \vspace{0.18cm}
+
+    \item Close the Arduino Serial Monitor.
+    \vspace{0.18cm}
+
+    \item Connect motor power only after the wiring is checked.
+    \vspace{0.18cm}
+
+    \item Hold the pendulum gently near the upright position before pressing Enter in the Python terminal.
+    \vspace{0.18cm}
+
+    \item Keep fingers clear of the rotating arm.
+\end{enumerate}
+
+\vspace{0.15cm}
+
+
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{LQR hardware experiment: run}
+\begin{enumerate}
+    \item Open a terminal in the LQR experiment folder.
+    \vspace{0.25cm}
+    \item Run the Python script:
+    \vspace{0.1cm}
+    \begin{center}
+    \texttt{python rip\_lqr\_run.py}
+    \end{center}
+    \vspace{0.2cm}
+    \item Hold the pendulum close to upright.
+    \vspace{0.25cm}
+    \item Press Enter in the Python terminal to send \texttt{GO}.
+    \vspace{0.25cm}
+    \item The script records data and saves a CSV log and figures.
+\end{enumerate}
+\end{frame}
+
+% ---------------------------------
+% ---------------------------------
+\begin{frame}{LQR hardware experiment: expected data}
+
+The Python script records:
+\[
+t,\quad \theta,\quad \alpha,
+\quad \dot\theta_{\mathrm{LPF}},
+\quad \dot\alpha_{\mathrm{LPF}},
+\quad u.
+\]
+
+\vspace{0.2cm}
+
+Here, the angular velocities are not directly measured.
+They are computed from angle differences and then filtered:
+\[
+\dot\theta_{\mathrm{raw}}(k)
+=
+\frac{\theta_k-\theta_{k-1}}{T_s},
+\qquad
+\dot\alpha_{\mathrm{raw}}(k)
+=
+\frac{\alpha_k-\alpha_{k-1}}{T_s}.
+\]
+
+\[
+\dot{x}_{\mathrm{LPF}}(k)
+=
+(1-\lambda)\dot{x}_{\mathrm{LPF}}(k-1)
++
+\lambda \dot{x}_{\mathrm{raw}}(k).
+\]
+
+\vspace{0.15cm}
+
+The generated plots should include:
+\begin{itemize}
+    \item angle response: $\theta(t)$ and $\alpha(t)$;
+    \item filtered angular velocity response: $\dot\theta_{\mathrm{LPF}}(t)$ and $\dot\alpha_{\mathrm{LPF}}(t)$;
+    \item PWM command $u(t)$.
+\end{itemize}
+
+\vspace{0.15cm}
+
+
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Why introduce MPC after LQR?}
+LQR gives an explicit feedback law:
+\[
+u=-Kx.
+\]
+
+\vspace{0.15cm}
+
+This is simple and fast, but standard LQR does not explicitly handle input constraints.
+
+\vspace{0.15cm}
+
+In real hardware, the PWM command must satisfy
+\[
+-u_{\max}\le u\le u_{\max}.
+\]
+
+\vspace{0.2cm}
+\begin{block}{MPC idea}
+\small
+MPC solves a finite-horizon optimal control problem at each sampling instant and includes PWM constraints directly inside the optimization problem.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{MPC prediction model}
+Use the same discrete linear model:
+\[
+x_{k+1}=A_dx_k+B_du_k.
+\]
+
+At current time $k$, predict future states:
+\[
+x_{k+i+1|k}
+=A_dx_{k+i|k}+B_du_{k+i|k},
+\qquad i=0,1,\ldots,N-1.
+\]
+
+The initial predicted state is
+\[
+x_{k|k}=x_k.
+\]
+
+\vspace{0.15cm}
+\begin{block}{Prediction horizon}
+\small
+In the provided embedded MPC code, the prediction horizon is small enough for STM32 real-time implementation at 200 Hz.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Stacked prediction form}
+Define the future input sequence
+\[
+U=\begin{bmatrix}
+u_{k|k}&u_{k+1|k}&\cdots&u_{k+N-1|k}
+\end{bmatrix}^\top.
+\]
+
+Stack future predicted states:
+\[
+X=\begin{bmatrix}
+x_{k+1|k}^\top&x_{k+2|k}^\top&\cdots&x_{k+N|k}^\top
+\end{bmatrix}^\top.
+\]
+
+Then
+\[
+X=S_xx_k+S_uU.
+\]
+
+\vspace{0.15cm}
+\begin{block}{Meaning}
+\small
+Once the current state $x_k$ is known, all future predicted states are linear functions of the future input sequence $U$.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{MPC cost function}
+The finite-horizon MPC cost is
+\[
+J
+=
+\sum_{i=0}^{N-1}
+\left(
+x_{k+i|k}^\top Qx_{k+i|k}
++
+u_{k+i|k}^\top Ru_{k+i|k}
+\right)
++x_{k+N|k}^\top P x_{k+N|k}.
+\]
+
+\vspace{0.15cm}
+
+Use the same stage weights as LQR:
+\[
+Q=\mathrm{diag}(1,0.05,80,2),
+\qquad
+R=0.001.
+\]
+
+\vspace{0.15cm}
+\begin{block}{Terminal weight}
+\small
+The terminal weight $P$ can be chosen as the infinite-horizon LQR Riccati solution $P_\infty$ to approximate the tail cost beyond the prediction window.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{From MPC cost to quadratic programming}
+Using
+\[
+X=S_xx_k+S_uU,
+\]
+the part of the cost depending on $U$ can be written as
+\[
+J_U(U)=\frac12U^\top HU+f^\top U,
+\]
+where
+\[
+f=Gx_k.
+\]
+
+\vspace{0.2cm}
+
+The matrices $H$ and $G$ depend only on
+\[
+A_d,
+B_d,
+Q,
+R,
+P,
+N.
+\]
+
+\vspace{0.15cm}
+\begin{block}{Embedded implementation}
+\small
+$H$ and $G$ are computed offline and stored in the firmware. Online computation only updates $f=Gx_k$.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{MPC input constraint}
+The motor PWM command is bounded:
+\[
+-u_{\max}\le u_{k+i|k}\le u_{\max},
+\qquad i=0,1,\ldots,N-1.
+\]
+
+Therefore, the MPC problem is
+\[
+\min_U\ \frac12U^\top HU+(Gx_k)^\top U,
+\]
+\[
+\mathrm{s.t.}\quad
+-u_{\max}\le U_i\le u_{\max}.
+\]
+
+\vspace{0.15cm}
+\begin{block}{Main difference from LQR}
+\small
+LQR computes an unconstrained feedback and then the firmware may saturate it. MPC considers the PWM bound inside the optimization problem.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Projected-gradient solver on STM32}
+The gradient of the QP objective is
+\[
+\nabla J(U)=HU+f.
+\]
+
+A projected-gradient iteration is
+\[
+U^{(j+1)}=
+\Pi_{[-u_{\max},u_{\max}]}
+\left(
+U^{(j)}-\eta(HU^{(j)}+f)
+\right).
+\]
+
+\vspace{0.15cm}
+
+Here $\Pi$ means element-wise saturation:
+\[
+U_i\leftarrow \max(-u_{\max},\min(u_{\max},U_i)).
+\]
+
+\vspace{0.15cm}
+\begin{block}{Real-time strategy}
+\small
+Use a fixed number of iterations and warm start from the previous control sequence.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{MPC rolling optimization}
+At each control cycle:
+\begin{enumerate}
+    \item read the current state $x_k$;
+    \vspace{0.15cm}
+    \item compute $f=Gx_k$;
+    \vspace{0.15cm}
+    \item warm start the control sequence $U$;
+    \vspace{0.15cm}
+    \item run projected-gradient iterations;
+    \vspace{0.15cm}
+    \item apply only the first input:
+    \[
+    u_k=u^*_{k|k};
+    \]
+    \vspace{0.05cm}
+    \item repeat at the next 5 ms control cycle.
+\end{enumerate}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{MPC hardware experiment}
+\begin{enumerate}
+    \item Upload the MPC firmware to STM32.
+    \vspace{0.22cm}
+    \item Close the Arduino Serial Monitor.
+    \vspace{0.22cm}
+    \item Hold the pendulum near the upright position.
+    \vspace{0.22cm}
+    \item Run the Python script:
+    \vspace{0.08cm}
+    \begin{center}
+    \texttt{python rip\_mpc\_run.py}
+    \end{center}
+    \vspace{0.15cm}
+    \item Press Enter in the terminal to send \texttt{GO}.
+    \vspace{0.22cm}
+    \item Record angle, angular velocity, PWM, and computation-time logs.
+\end{enumerate}
+\end{frame}
+
+% ---------------------------------
+\begin{frame}{Comparing LQR and MPC in the lab}
+\begin{center}
+\begin{tabular}{c|c|c}
+\hline
+Item & LQR & MPC \\
+\hline
+Control law & explicit $u=-Kx$ & QP-defined implicit feedback \\
+Constraint handling & saturation after control & constraint inside optimization \\
+Online computation & very small & projected-gradient iterations \\
+Tuning parameters & $Q,R$ & $Q,R,P,N,u_{\max}$ \\
+Hardware focus & fast local stabilization & constrained local stabilization \\
+\hline
+\end{tabular}
+\end{center}
+
+\vspace{0.25cm}
+\begin{block}{Student comparison task}
+\small
+Compare angle curves, PWM distributions, and whether the controller frequently hits the PWM bound.
+\end{block}
+\end{frame}
+
+% ---------------------------------
+% ---------------------------------
+\begin{frame}{Lab report requirements}
+
+Each group should record:
+\begin{itemize}
+    \item the model matrices or file location used for computing \(K\);
+
+
+    \item at least three different LQR weight settings:
+    \[
+    Q=\mathrm{diag}(q_\theta,q_{\dot\theta},q_\alpha,q_{\dot\alpha}),
+    \qquad R=r;
+    \]
+   
+
+    \item the computed LQR gain \(K\) for each \(Q,R\) setting;
+   
+
+    \item one successful experimental log for each LQR setting;
+   
+
+    \item one successful MPC experimental log;
+  
+
+    \item comparison plots of \(\theta,\alpha,\dot\theta_{\mathrm{LPF}},\dot\alpha_{\mathrm{LPF}}\) and PWM for different LQR settings;
+  
+
+    \item a short comparison of LQR tuning effects and MPC performance.
+\end{itemize}
+
+\end{frame}
+
+
+
+% ---------------------------------
+\begin{frame}{Summary of Lecture 8}
+\begin{itemize}
+    \item LQR and MPC both rely on the local discrete model $x_{k+1}=A_dx_k+B_du_k$.
+
+    \item LQR solves a discrete Riccati equation and gives a fast explicit feedback law.
+
+    \item MPC solves a finite-horizon constrained optimization problem at each sampling time.
+
+    \item In the real experiment, students manually place the pendulum near upright and press Enter in Python to start control.
+
+    \item Low-pass filtered angle differences provide the velocity estimates needed by both controllers.
+
+    \item The key experimental comparison is between unconstrained feedback plus saturation and constrained rolling optimization.
+\end{itemize}
+\end{frame}
+
+\end{document}

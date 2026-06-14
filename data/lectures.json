@@ -1,0 +1,107 @@
+[
+  {
+    "no": 6,
+    "id": "lecture-06",
+    "title": "Hardware Introduction and RIP Modeling",
+    "focus": "Rotary inverted pendulum hardware, sensing, actuation, state variables, nonlinear dynamics, linearization, and STM32 setup.",
+    "topics": [
+      "From CartPole to real rotary inverted pendulum hardware",
+      "STM32F446RE, TB6612FNG, potentiometer, encoder, and DC motor",
+      "Encoder pulse counting and potentiometer angle conversion",
+      "Lagrange modeling, linearization, and PWM-input state-space model"
+    ],
+    "lab": "Board setup, firmware upload, serial monitor test, and hardware debugging checklist.",
+    "pdf": "downloads/slides/Lecture06_Hardware_Introduction_and_RIP_Modeling.pdf",
+    "tex": "downloads/sources/Lecture06_Hardware_Introduction_and_RIP_Modeling_source.tex"
+  },
+  {
+    "no": 7,
+    "id": "lecture-07",
+    "title": "Hardware Assembly, Sensor Test, and Bellman-to-Control Bridge",
+    "focus": "Physical wiring, power safety, sensor logging, motor test, and the conceptual path from Bellman optimality to HJB, LQR, MPC, and RL.",
+    "topics": [
+      "PC--STM32--TB6612--motor--sensor wiring",
+      "DC power jack pins and TA power-on check",
+      "Sensor calibration and Python serial logging",
+      "Bellman principle, HJB equation, LQR, MPC, and Q-functions"
+    ],
+    "lab": "Run sensor logger and motor test packages; collect calibrated angle data.",
+    "pdf": "downloads/slides/Lecture07_Hardware_Assembly_Sensor_Test_and_Bellman_to_Control_Bridge.pdf",
+    "tex": "downloads/sources/Lecture07_Hardware_Assembly_Sensor_Test_and_Bellman_to_Control_Bridge_source.tex"
+  },
+  {
+    "no": 8,
+    "id": "lecture-08",
+    "title": "LQR and MPC Control Practice",
+    "focus": "Sampled-data model, velocity estimation, low-pass filtering, discrete LQR design, and constrained MPC implementation on STM32.",
+    "topics": [
+      "Zero-order-hold discretization",
+      "Angular velocity estimation and low-pass filtering",
+      "Discrete Riccati equation and LQR gain computation",
+      "MPC prediction model, quadratic cost, input constraint, and projected-gradient solver"
+    ],
+    "lab": "Run LQR and MPC experiments, collect logs, and compare time responses.",
+    "pdf": "downloads/slides/Lecture08_LQR_and_MPC_Control_Practice.pdf",
+    "tex": "downloads/sources/Lecture08_LQR_and_MPC_Control_Practice_source.tex"
+  },
+  {
+    "no": 9,
+    "id": "lecture-09",
+    "title": "Observer Design for LQR and MPC",
+    "focus": "State estimation for the RIP using Luenberger and Kalman observers, with observer-based LQR/MPC hardware experiments.",
+    "topics": [
+      "Measured outputs and observer states",
+      "Luenberger observer poles and error dynamics",
+      "Steady-state Kalman observer and noise tuning",
+      "LQR/MPC observer experiment strategy"
+    ],
+    "lab": "Compare direct angle-difference velocities with observer-estimated states.",
+    "pdf": "downloads/slides/Lecture09_Observer_Design_for_LQR_and_MPC.pdf",
+    "tex": "downloads/sources/Lecture09_Observer_Design_for_LQR_and_MPC_source.tex"
+  },
+  {
+    "no": 10,
+    "id": "lecture-10",
+    "title": "Reinforcement Learning for RIP Simulation",
+    "focus": "DQN, PPO, and TD3 for rotary inverted pendulum simulation training using a Gymnasium-style environment.",
+    "topics": [
+      "DQN: Q-network, replay buffer, target network, and epsilon-greedy exploration",
+      "PPO and TD3 overview",
+      "RIP simulation environment interface and important parameters",
+      "Training scripts, hyperparameters, evaluation, and result files"
+    ],
+    "lab": "Train and evaluate RL policies; tune DQN/PPO/TD3 hyperparameters.",
+    "pdf": "downloads/slides/Lecture10_Reinforcement_Learning_for_RIP_Simulation.pdf",
+    "tex": "downloads/sources/Lecture10_Reinforcement_Learning_for_RIP_Simulation_source.tex"
+  },
+  {
+    "no": 11,
+    "id": "lecture-11",
+    "title": "Sim-to-Real Deployment of RL Controllers",
+    "focus": "Export trained policies, embed model headers into firmware, deploy DQN/PPO/TD3 policies to hardware, and compare simulation with physical data.",
+    "topics": [
+      "Sim-to-real deployment pipeline",
+      "Potentiometer zero calibration and model-header placement",
+      "PC deployment logger and hardware start modes",
+      "DQN/PPO/TD3 deployment checks and mismatch diagnosis"
+    ],
+    "lab": "Deploy trained policies and record quantitative sim-to-real comparison metrics.",
+    "pdf": "downloads/slides/Lecture11_Sim_to_Real_Deployment_of_RL_Controllers.pdf",
+    "tex": "downloads/sources/Lecture11_Sim_to_Real_Deployment_of_RL_Controllers_source.tex"
+  },
+  {
+    "no": 12,
+    "id": "lecture-12",
+    "title": "Hybrid Control, Residual Adaptation, and Final Demonstration",
+    "focus": "Hybrid control schemes such as DQN+MPC and DQN+PPO, switching logic, residual model correction, and final live demonstration.",
+    "topics": [
+      "Hybrid control architecture and anti-chattering logic",
+      "DQN+MPC and DQN+PPO switching schemes",
+      "Residual network for one-step model correction",
+      "Required experiments, report structure, and final demo scoring"
+    ],
+    "lab": "Final demonstration and comparison of pure and hybrid controllers.",
+    "pdf": "downloads/slides/Lecture12_Hybrid_Control_Residual_Adaptation_and_Final_Demonstration.pdf",
+    "tex": "downloads/sources/Lecture12_Hybrid_Control_Residual_Adaptation_and_Final_Demonstration_source.tex"
+  }
+]
