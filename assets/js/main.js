@@ -10,7 +10,7 @@ function lectureCard(lec) {
   const topics = lec.topics.map(t => `<li>${t}</li>`).join('');
   const links = [
     lec.pdf ? `<a href="${lec.pdf}" download>Download PDF</a>` : '',
-    lec.tex ? `<a href="${lec.tex}" download>Download TeX Source</a>` : ''
+    lec.tex ? `<a href="${lec.tex}" download></a>` : ''
   ].filter(Boolean).join('');
   return `<article class="lecture-card" id="${lec.id}">
     <div class="lecture-no"><span>Class</span><strong>${lec.no}</strong></div>

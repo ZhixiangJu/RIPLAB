@@ -1,107 +1,197 @@
 [
   {
+    "no": 1,
+    "id": "lecture-01",
+    "title": "Course Overview and Control Fundamentals",
+    "focus": "Course structure, basic control concepts, inverted pendulum motivation, block diagrams, input/output/state, and open-loop versus closed-loop control.",
+    "topics": [
+      "Course syllabus and learning objectives",
+      "What control engineering studies and why it matters",
+      "Inverted pendulum as a classical benchmark",
+      "Input, output, state, open-loop control, closed-loop control, and feedback"
+    ],
+    "lab": "Conceptual introduction and control-system terminology.",
+    "pdf": "downloads/slides/Lecture01_Course_Overview_and_Control_Fundamentals.pdf"
+  },
+  {
+    "no": 2,
+    "id": "lecture-02",
+    "title": "Linear Dynamical Systems and Transfer Functions",
+    "focus": "Linear dynamical systems, nonlinear-to-linear modeling, Laplace transform, and transfer-function representation.",
+    "topics": [
+      "Linear system concepts and modeling assumptions",
+      "From nonlinear CartPole dynamics to a linear model",
+      "Laplace transform and useful properties",
+      "Transfer functions as input-output models"
+    ],
+    "lab": "Modeling practice based on linearized control examples.",
+    "pdf": "downloads/slides/Lecture02_Linear_Dynamical_Systems_and_Transfer_Functions.pdf"
+  },
+  {
+    "no": 3,
+    "id": "lecture-03",
+    "title": "Closed-Loop Stability and Root Locus",
+    "focus": "Closed-loop transfer functions, characteristic equations, poles and zeros, stability, Routh criterion, and root-locus analysis.",
+    "topics": [
+      "Closed-loop transfer function",
+      "Characteristic equation, poles, and zeros",
+      "Stability and marginal stability",
+      "Routh criterion and root locus"
+    ],
+    "lab": "Classical-control analysis practice.",
+    "pdf": "downloads/slides/Lecture03_Closed_Loop_Stability_and_Root_Locus.pdf"
+  },
+  {
+    "no": 4,
+    "id": "lecture-04",
+    "title": "Frequency Response, State Space, and RL Introduction",
+    "focus": "Frequency-response analysis, Bode and Nyquist plots, margins, state-space perspective, controllability, observability, and a first RL introduction.",
+    "topics": [
+      "Frequency response, Bode plot, and Nyquist plot",
+      "Gain margin and phase margin",
+      "State-space modeling perspective",
+      "Controllability, observability, state feedback, and RL motivation"
+    ],
+    "lab": "Frequency-domain and state-space interpretation practice.",
+    "pdf": "downloads/slides/Lecture04_Frequency_Response_State_Space_and_RL_Introduction.pdf"
+  },
+  {
+    "no": 5,
+    "id": "lecture-05",
+    "title": "CartPole, Reinforcement Learning, and DQN Practice",
+    "focus": "Reinforcement learning overview, Q-learning, DQN, replay buffer, target network, and a practical CartPole workflow.",
+    "topics": [
+      "Reinforcement learning overview",
+      "Q-learning and limitations of Q-tables",
+      "Deep Q-Network with replay buffer and target network",
+      "Torch, Gymnasium, Stable-Baselines3, and practical setup"
+    ],
+    "lab": "CartPole DQN practice and environment setup.",
+    "pdf": "downloads/slides/Lecture05_CartPole_RL_and_DQN_Practice.pdf"
+  },
+  {
     "no": 6,
     "id": "lecture-06",
-    "title": "Hardware Introduction and RIP Modeling",
-    "focus": "Rotary inverted pendulum hardware, sensing, actuation, state variables, nonlinear dynamics, linearization, and STM32 setup.",
-    "topics": [
-      "From CartPole to real rotary inverted pendulum hardware",
-      "STM32F446RE, TB6612FNG, potentiometer, encoder, and DC motor",
-      "Encoder pulse counting and potentiometer angle conversion",
-      "Lagrange modeling, linearization, and PWM-input state-space model"
-    ],
-    "lab": "Board setup, firmware upload, serial monitor test, and hardware debugging checklist.",
-    "pdf": "downloads/slides/Lecture06_Hardware_Introduction_and_RIP_Modeling.pdf",
-    "tex": "downloads/sources/Lecture06_Hardware_Introduction_and_RIP_Modeling_source.tex"
+    "title": "Reserved Session",
+    "focus": "Materials for this session will be added later.",
+    "topics": [],
+    "lab": "To be announced.",
+    "pdf": ""
   },
   {
     "no": 7,
     "id": "lecture-07",
-    "title": "Hardware Assembly, Sensor Test, and Bellman-to-Control Bridge",
-    "focus": "Physical wiring, power safety, sensor logging, motor test, and the conceptual path from Bellman optimality to HJB, LQR, MPC, and RL.",
+    "title": "RIP Modeling, Hardware System Introduction, and STM32 Setup",
+    "focus": "Rotary inverted pendulum modeling, hardware architecture, sensors, motor driver, STM32 development setup, and experimental-platform overview.",
     "topics": [
-      "PC--STM32--TB6612--motor--sensor wiring",
-      "DC power jack pins and TA power-on check",
-      "Sensor calibration and Python serial logging",
-      "Bellman principle, HJB equation, LQR, MPC, and Q-functions"
+      "Rotary inverted pendulum hardware and coordinate definitions",
+      "Potentiometer, encoder, DC motor, and TB6612FNG driver",
+      "STM32F446RE development environment",
+      "Modeling path from physical system to control-oriented representation"
     ],
-    "lab": "Run sensor logger and motor test packages; collect calibrated angle data.",
-    "pdf": "downloads/slides/Lecture07_Hardware_Assembly_Sensor_Test_and_Bellman_to_Control_Bridge.pdf",
-    "tex": "downloads/sources/Lecture07_Hardware_Assembly_Sensor_Test_and_Bellman_to_Control_Bridge_source.tex"
+    "lab": "Hardware platform introduction and STM32 environment setup.",
+    "pdf": "downloads/slides/Lecture07_RIP_Modeling_Hardware_and_STM32_Setup.pdf"
   },
   {
     "no": 8,
     "id": "lecture-08",
-    "title": "LQR and MPC Control Practice",
-    "focus": "Sampled-data model, velocity estimation, low-pass filtering, discrete LQR design, and constrained MPC implementation on STM32.",
+    "title": "Hardware Assembly, Sensor Test, and Bellman-to-Control Bridge",
+    "focus": "Physical wiring, sensor and motor tests, angle logging, and the conceptual bridge from Bellman optimality to HJB, LQR, MPC, and RL.",
     "topics": [
-      "Zero-order-hold discretization",
-      "Angular velocity estimation and low-pass filtering",
-      "Discrete Riccati equation and LQR gain computation",
-      "MPC prediction model, quadratic cost, input constraint, and projected-gradient solver"
+      "PC--STM32--TB6612--motor--sensor wiring",
+      "Sensor calibration and motor actuation checks",
+      "Python serial logging workflow",
+      "Bellman principle, HJB equation, LQR, MPC, and RL connections"
     ],
-    "lab": "Run LQR and MPC experiments, collect logs, and compare time responses.",
-    "pdf": "downloads/slides/Lecture08_LQR_and_MPC_Control_Practice.pdf",
-    "tex": "downloads/sources/Lecture08_LQR_and_MPC_Control_Practice_source.tex"
+    "lab": "Run sensor and motor test programs and collect calibrated logs.",
+    "pdf": "downloads/slides/Lecture08_Hardware_Assembly_Sensor_Test_and_Bellman_Bridge.pdf"
   },
   {
     "no": 9,
     "id": "lecture-09",
-    "title": "Observer Design for LQR and MPC",
-    "focus": "State estimation for the RIP using Luenberger and Kalman observers, with observer-based LQR/MPC hardware experiments.",
+    "title": "Optimal Control Experiments on the Rotary Inverted Pendulum",
+    "focus": "Sampled-data modeling, velocity estimation, LQR and MPC design, embedded implementation, and hardware experiment comparison.",
     "topics": [
-      "Measured outputs and observer states",
-      "Luenberger observer poles and error dynamics",
-      "Steady-state Kalman observer and noise tuning",
-      "LQR/MPC observer experiment strategy"
+      "Sampled-data model and discretization",
+      "Angular velocity estimation and filtering",
+      "LQR gain computation and STM32 implementation",
+      "MPC prediction, cost function, constraints, and hardware testing"
     ],
-    "lab": "Compare direct angle-difference velocities with observer-estimated states.",
-    "pdf": "downloads/slides/Lecture09_Observer_Design_for_LQR_and_MPC.pdf",
-    "tex": "downloads/sources/Lecture09_Observer_Design_for_LQR_and_MPC_source.tex"
+    "lab": "Run and compare LQR and MPC hardware experiments.",
+    "pdf": "downloads/slides/Lecture09_Optimal_Control_Experiments_on_RIP.pdf"
   },
   {
     "no": 10,
     "id": "lecture-10",
-    "title": "Reinforcement Learning for RIP Simulation",
-    "focus": "DQN, PPO, and TD3 for rotary inverted pendulum simulation training using a Gymnasium-style environment.",
+    "title": "State Observers for Control of the Rotary Inverted Pendulum",
+    "focus": "Observer design for RIP control using Luenberger and Kalman observers with observer-based LQR/MPC experiments.",
     "topics": [
-      "DQN: Q-network, replay buffer, target network, and epsilon-greedy exploration",
-      "PPO and TD3 overview",
-      "RIP simulation environment interface and important parameters",
-      "Training scripts, hyperparameters, evaluation, and result files"
+      "Measured outputs and unmeasured state reconstruction",
+      "Luenberger observer poles and error dynamics",
+      "Steady-state Kalman observer and noise tuning",
+      "Observer-based LQR and MPC implementation"
     ],
-    "lab": "Train and evaluate RL policies; tune DQN/PPO/TD3 hyperparameters.",
-    "pdf": "downloads/slides/Lecture10_Reinforcement_Learning_for_RIP_Simulation.pdf",
-    "tex": "downloads/sources/Lecture10_Reinforcement_Learning_for_RIP_Simulation_source.tex"
+    "lab": "Compare direct velocity estimation with observer-estimated states.",
+    "pdf": "downloads/slides/Lecture10_State_Observers_for_RIP_Control.pdf"
   },
   {
     "no": 11,
     "id": "lecture-11",
-    "title": "Sim-to-Real Deployment of RL Controllers",
-    "focus": "Export trained policies, embed model headers into firmware, deploy DQN/PPO/TD3 policies to hardware, and compare simulation with physical data.",
+    "title": "Simulation Training of DQN, PPO, and TD3 for the Rotary Inverted Pendulum",
+    "focus": "Gymnasium-style RIP simulation, training workflows, and policy export for DQN, PPO, and TD3.",
     "topics": [
-      "Sim-to-real deployment pipeline",
-      "Potentiometer zero calibration and model-header placement",
-      "PC deployment logger and hardware start modes",
-      "DQN/PPO/TD3 deployment checks and mismatch diagnosis"
+      "Custom RIP simulation environment",
+      "DQN training pipeline",
+      "PPO and TD3 training workflows",
+      "Policy evaluation and export for deployment"
     ],
-    "lab": "Deploy trained policies and record quantitative sim-to-real comparison metrics.",
-    "pdf": "downloads/slides/Lecture11_Sim_to_Real_Deployment_of_RL_Controllers.pdf",
-    "tex": "downloads/sources/Lecture11_Sim_to_Real_Deployment_of_RL_Controllers_source.tex"
+    "lab": "Train and evaluate reinforcement learning controllers in simulation.",
+    "pdf": "downloads/slides/Lecture11_DQN_PPO_TD3_RIP_Simulation_Training.pdf"
   },
   {
     "no": 12,
     "id": "lecture-12",
-    "title": "Hybrid Control, Residual Adaptation, and Final Demonstration",
-    "focus": "Hybrid control schemes such as DQN+MPC and DQN+PPO, switching logic, residual model correction, and final live demonstration.",
+    "title": "Sim-to-Real Deployment of Reinforcement Learning Controllers",
+    "focus": "Export trained policies, deploy DQN/PPO/TD3 controllers to embedded hardware, and log physical-system responses.",
     "topics": [
-      "Hybrid control architecture and anti-chattering logic",
-      "DQN+MPC and DQN+PPO switching schemes",
-      "Residual network for one-step model correction",
-      "Required experiments, report structure, and final demo scoring"
+      "Sim-to-real deployment workflow",
+      "Policy-header export and firmware integration",
+      "DQN, PPO, and TD3 deployment programs",
+      "Hardware logging and mismatch diagnosis"
     ],
-    "lab": "Final demonstration and comparison of pure and hybrid controllers.",
-    "pdf": "downloads/slides/Lecture12_Hybrid_Control_Residual_Adaptation_and_Final_Demonstration.pdf",
-    "tex": "downloads/sources/Lecture12_Hybrid_Control_Residual_Adaptation_and_Final_Demonstration_source.tex"
+    "lab": "Deploy trained RL controllers and record physical experiment data.",
+    "pdf": "downloads/slides/Lecture12_RL_Sim_to_Real_Deployment.pdf"
+  },
+  {
+    "no": 13,
+    "id": "lecture-13",
+    "title": "Hybrid Control, Sim-to-Real Improvement, and Final Demonstration",
+    "focus": "Hybrid control ideas, sim-to-real improvement strategies, delay issues, and final demonstration organization.",
+    "topics": [
+      "Hybrid control architecture",
+      "Sim-to-real improvement and residual adaptation ideas",
+      "Delay and implementation constraints",
+      "Final demonstration and reporting requirements"
+    ],
+    "lab": "Prepare final comparison, demonstration, and report materials.",
+    "pdf": "downloads/slides/Lecture13_Hybrid_Control_Sim_to_Real_Improvement_and_Final_Demo.pdf"
+  },
+  {
+    "no": 14,
+    "id": "lecture-14",
+    "title": "Reserved Session",
+    "focus": "Materials for this session will be added later.",
+    "topics": [],
+    "lab": "To be announced.",
+    "pdf": ""
+  },
+  {
+    "no": 15,
+    "id": "lecture-15",
+    "title": "Reserved Session",
+    "focus": "Materials for this session will be added later.",
+    "topics": [],
+    "lab": "To be announced.",
+    "pdf": ""
   }
 ]

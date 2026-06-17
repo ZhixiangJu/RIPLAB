@@ -1,9 +1,22 @@
 [
   {
-    "file": "downloads/code/Lecture07_Sensor_and_Motor_Test_Code.zip",
-    "title": "Sensor Logger and Motor Test Code",
-    "classNo": 7,
-    "description": "Arduino firmware and Python logging scripts for potentiometer/encoder tests and TB6612 motor checks.",
+    "file": "downloads/code/Lecture05_CartPole_DQN_Practice_Code.zip",
+    "title": "CartPole DQN Practice Code",
+    "classNo": 5,
+    "description": "Compact CartPole reinforcement learning example scripts. Third-party Python libraries should be installed separately.",
+    "tags": [
+      "CartPole",
+      "DQN",
+      "Python",
+      "RL"
+    ],
+    "size": 3672
+  },
+  {
+    "file": "downloads/code/Lecture08_Sensor_and_Motor_Test_Code.zip",
+    "title": "Sensor and Motor Test Code",
+    "classNo": 8,
+    "description": "STM32 firmware and Python logging scripts for potentiometer/encoder sensing and TB6612 motor tests.",
     "tags": [
       "STM32",
       "Python",
@@ -13,10 +26,10 @@
     "size": 11815
   },
   {
-    "file": "downloads/code/Lecture08_LQR_and_MPC_Code.zip",
+    "file": "downloads/code/Lecture09_LQR_and_MPC_Control_Code.zip",
     "title": "LQR and MPC Hardware Experiment Code",
-    "classNo": 8,
-    "description": "Gain computation, STM32 firmware, and PC scripts for LQR and MPC experiments on the rotary inverted pendulum.",
+    "classNo": 9,
+    "description": "Gain computation scripts, STM32 firmware, and PC logging scripts for LQR and MPC experiments.",
     "tags": [
       "LQR",
       "MPC",
@@ -26,10 +39,10 @@
     "size": 12898
   },
   {
-    "file": "downloads/code/Lecture09_Observer_Based_Control_Code.zip",
+    "file": "downloads/code/Lecture10_Observer_Based_Control_Code.zip",
     "title": "Observer-Based LQR/MPC Code",
-    "classNo": 9,
-    "description": "Luenberger and Kalman observer design scripts plus observer-based LQR/MPC STM32 firmware and logging scripts.",
+    "classNo": 10,
+    "description": "Luenberger and Kalman observer design scripts plus observer-based LQR/MPC firmware and logging tools.",
     "tags": [
       "Observer",
       "Kalman",
@@ -37,13 +50,13 @@
       "LQR",
       "MPC"
     ],
-    "size": 28034
+    "size": 28066
   },
   {
-    "file": "downloads/code/Lecture10_RL_Training_Code.zip",
+    "file": "downloads/code/Lecture11_RL_Simulation_Training_Code.zip",
     "title": "RIP Reinforcement Learning Training Code",
-    "classNo": 10,
-    "description": "Custom RIP environment and training/export scripts for DQN, PPO, and TD3. External libraries should be installed separately.",
+    "classNo": 11,
+    "description": "Course-specific RIP simulation environment and DQN/PPO/TD3 training/export scripts. Install third-party dependencies separately.",
     "tags": [
       "DQN",
       "PPO",
@@ -51,13 +64,13 @@
       "Gymnasium",
       "Simulation"
     ],
-    "size": 65109
+    "size": 64727
   },
   {
-    "file": "downloads/code/Lecture11_RL_Deployment_Code.zip",
+    "file": "downloads/code/Lecture12_RL_Sim_to_Real_Deployment_Code.zip",
     "title": "RL Sim-to-Real Deployment Code",
-    "classNo": 11,
-    "description": "Deployment firmware and PC logger scripts for DQN, PPO, and TD3 policies on the physical rotary inverted pendulum.",
+    "classNo": 12,
+    "description": "Deployment firmware and PC scripts for DQN, PPO, and TD3 controllers on the physical rotary inverted pendulum.",
     "tags": [
       "Deployment",
       "DQN",
@@ -66,16 +79,5 @@
       "STM32"
     ],
     "size": 30890
-  },
-  {
-    "file": "downloads/code/All_Course_Specific_Materials_Compact.zip",
-    "title": "All Course-Specific Materials Compact Package",
-    "classNo": "6-12",
-    "description": "Compiled slides, source TeX files, images, and course-specific code packages, excluding large vendored third-party libraries.",
-    "tags": [
-      "All materials",
-      "Compact"
-    ],
-    "size": 15519495
   }
 ]
