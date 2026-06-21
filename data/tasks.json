@@ -1,38 +1,56 @@
 [
   {
+    "classNo": 5,
+    "title": "CartPole DQN Practice",
+    "deliverable": "Training log and evaluation plot.",
+    "emphasis": "Reward design, convergence behavior, and reproducibility."
+  },
+  {
+    "classNo": 6,
+    "title": "Drone Hardware and Control Lab",
+    "deliverable": "A short hardware-control worksheet describing the drone modules, sensing signals, actuation path, and basic control-loop hierarchy.",
+    "emphasis": "Hardware architecture, IMU feedback, flight-control loops, calibration, and experimental safety."
+  },
+  {
     "classNo": 7,
-    "title": "Sensor and Motor Test Log",
-    "deliverable": "A short lab note with calibration constants, 10-second sensor logs, motor-test observations, and safety-check notes.",
-    "emphasis": "Correct wiring, stable serial logging, and meaningful raw-to-angle conversion."
+    "title": "RIP Hardware and Dynamic Analysis Lab",
+    "deliverable": "A hardware inspection record and a concise dynamic-analysis note including state variables, sensor mappings, and the linearized model structure.",
+    "emphasis": "RIP hardware modules, angle sensing, actuation, nonlinear dynamics, and linearization for control design."
   },
   {
     "classNo": 8,
-    "title": "LQR/MPC Experiment Comparison",
-    "deliverable": "A report comparing LQR and MPC time-domain responses, input saturation behavior, and tuning choices.",
-    "emphasis": "Quantitative plots, Q/R choices, MPC constraints, and discussion of hardware behavior."
+    "title": "Sensor and Motor Test",
+    "deliverable": "Calibration constants, sensor logs, and motor-test observations.",
+    "emphasis": "Correct wiring, stable serial communication, and safe power-on procedure."
   },
   {
     "classNo": 9,
-    "title": "Observer-Based Control Study",
-    "deliverable": "A comparison of angle-difference velocities, Luenberger estimates, and Kalman estimates inside LQR/MPC control loops.",
-    "emphasis": "Observer tuning, noise sensitivity, transient response, and stability observations."
+    "title": "LQR/MPC Experiment Comparison",
+    "deliverable": "Time-response plots and a short comparison report.",
+    "emphasis": "Controller tuning, constraints, PWM saturation, and hardware behavior."
   },
   {
     "classNo": 10,
-    "title": "RL Training Study",
-    "deliverable": "Training curves, evaluation plots, and a short discussion of DQN/PPO/TD3 hyperparameter effects in simulation.",
-    "emphasis": "Reward design, exploration, convergence, and reproducibility."
+    "title": "Observer-Based Control Study",
+    "deliverable": "Comparison of raw derivative estimates and observer-estimated states.",
+    "emphasis": "Noise sensitivity, observer tuning, and closed-loop response."
   },
   {
     "classNo": 11,
-    "title": "Sim-to-Real Deployment Analysis",
-    "deliverable": "Hardware deployment logs and a simulation-to-hardware comparison for at least one trained RL policy.",
-    "emphasis": "Calibration, mismatch diagnosis, quantitative metrics, and safety constraints."
+    "title": "RL Simulation Training",
+    "deliverable": "Training curves and evaluation results for at least one RL algorithm.",
+    "emphasis": "Hyperparameters, reward shaping, and policy evaluation."
   },
   {
     "classNo": 12,
-    "title": "Hybrid Control Final Demonstration",
-    "deliverable": "Final demo result, hybrid switching analysis, and comparison against pure model-driven or pure RL controllers.",
-    "emphasis": "Switching logic, residual correction, robustness, and live-demo performance."
+    "title": "RL Sim-to-Real Deployment",
+    "deliverable": "Hardware deployment logs and sim-to-real comparison.",
+    "emphasis": "Calibration, mismatch diagnosis, and safety constraints."
+  },
+  {
+    "classNo": 13,
+    "title": "Final Hybrid Control Demonstration",
+    "deliverable": "Final demo result and comparison of control strategies.",
+    "emphasis": "Robustness, switching logic, and quantitative performance."
   }
 ]

@@ -1,83 +1,93 @@
 [
   {
-    "file": "downloads/code/Lecture05_CartPole_DQN_Practice_Code.zip",
-    "title": "CartPole DQN Practice Code",
     "classNo": 5,
-    "description": "Compact CartPole reinforcement learning example scripts. Third-party Python libraries should be installed separately.",
+    "title": "CartPole DQN Practice Code",
+    "description": "Python code for CartPole reinforcement learning practice using DQN.",
     "tags": [
       "CartPole",
       "DQN",
       "Python",
       "RL"
     ],
+    "file": "downloads/code/Lecture05_CartPole_DQN_Practice_Code.zip",
     "size": 3672
   },
   {
-    "file": "downloads/code/Lecture08_Sensor_and_Motor_Test_Code.zip",
-    "title": "Sensor and Motor Test Code",
     "classNo": 8,
-    "description": "STM32 firmware and Python logging scripts for potentiometer/encoder sensing and TB6612 motor tests.",
+    "title": "Sensor and Motor Test Code",
+    "description": "STM32 firmware and Python logging scripts for potentiometer, encoder, and motor driver tests.",
     "tags": [
       "STM32",
-      "Python",
-      "Sensor logging",
-      "Motor test"
+      "Sensors",
+      "Motor test",
+      "Python"
     ],
+    "file": "downloads/code/Lecture08_Sensor_and_Motor_Test_Code.zip",
     "size": 11815
   },
   {
-    "file": "downloads/code/Lecture09_LQR_and_MPC_Control_Code.zip",
-    "title": "LQR and MPC Hardware Experiment Code",
     "classNo": 9,
-    "description": "Gain computation scripts, STM32 firmware, and PC logging scripts for LQR and MPC experiments.",
+    "title": "LQR and MPC Control Code",
+    "description": "Controller design scripts, embedded firmware, and logging tools for LQR and MPC experiments.",
     "tags": [
       "LQR",
       "MPC",
       "STM32",
       "Python"
     ],
+    "file": "downloads/code/Lecture09_LQR_and_MPC_Control_Code.zip",
     "size": 12898
   },
   {
-    "file": "downloads/code/Lecture10_Observer_Based_Control_Code.zip",
-    "title": "Observer-Based LQR/MPC Code",
     "classNo": 10,
-    "description": "Luenberger and Kalman observer design scripts plus observer-based LQR/MPC firmware and logging tools.",
+    "title": "Observer-Based Control Code",
+    "description": "Luenberger and Kalman observer scripts plus observer-based control experiment code.",
     "tags": [
       "Observer",
       "Kalman",
       "Luenberger",
-      "LQR",
-      "MPC"
+      "Control"
     ],
+    "file": "downloads/code/Lecture10_Observer_Based_Control_Code.zip",
     "size": 28066
   },
   {
-    "file": "downloads/code/Lecture11_RL_Simulation_Training_Code.zip",
-    "title": "RIP Reinforcement Learning Training Code",
     "classNo": 11,
-    "description": "Course-specific RIP simulation environment and DQN/PPO/TD3 training/export scripts. Install third-party dependencies separately.",
+    "title": "RL Simulation Training Code",
+    "description": "Simulation environments, training scripts, and evaluation tools for DQN, PPO, and TD3.",
     "tags": [
       "DQN",
       "PPO",
       "TD3",
-      "Gymnasium",
       "Simulation"
     ],
+    "file": "downloads/code/Lecture11_RL_Simulation_Training_Code.zip",
     "size": 64727
   },
   {
-    "file": "downloads/code/Lecture12_RL_Sim_to_Real_Deployment_Code.zip",
-    "title": "RL Sim-to-Real Deployment Code",
     "classNo": 12,
-    "description": "Deployment firmware and PC scripts for DQN, PPO, and TD3 controllers on the physical rotary inverted pendulum.",
+    "title": "RL Sim-to-Real Deployment Code",
+    "description": "Deployment firmware and PC-side logging tools for transferring RL policies to the physical RIP platform.",
     "tags": [
       "Deployment",
-      "DQN",
-      "PPO",
-      "TD3",
-      "STM32"
+      "STM32",
+      "RL",
+      "Sim-to-real"
     ],
+    "file": "downloads/code/Lecture12_RL_Sim_to_Real_Deployment_Code.zip",
     "size": 30890
+  },
+  {
+    "classNo": "Optional",
+    "title": "ROS2 RIP Workspace",
+    "description": "Source workspace for the optional ROS2-based rotary inverted pendulum platform, including interfaces, serial bridge, manager, visualizer, and launch package.",
+    "file": "downloads/code/rip_ros2_ws_source.zip",
+    "size": 303528,
+    "tags": [
+      "ROS2",
+      "RIP",
+      "Serial bridge",
+      "Visualizer"
+    ]
   }
 ]
