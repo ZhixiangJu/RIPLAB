@@ -517,7 +517,7 @@ def update_code_data():
 
 def main():
     if not (ROOT / "assets" / "css" / "styles.css").exists():
-        raise SystemExit("Run this script from the RIPLAB repository root, for example: cd ~/Desktop/RIPLAB")
+        raise SystemExit("Run this script from the furuta_lab repository root, for example: cd ~/Desktop/furuta_lab")
 
     install_ros2_zip()
     write_page()
