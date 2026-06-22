@@ -103,16 +103,19 @@ window.COURSE_DATA = {
     },
     {
       "no": 6,
-      "title": "Drone Hardware and Control",
-      "focus": "Drone hardware architecture, onboard sensing, actuation, flight-control loops, and the relationship between embedded control and autonomous aerial systems.",
+      "title": "Overview of Autonomous Quadrotor UAV Research",
+      "focus": "System-level overview of autonomous quadrotor UAV research, including applications, basic dynamics, localization, perception, SLAM, planning, and autonomy.",
       "topics": [
-        "Drone platform structure, propulsion, ESCs, battery, and flight controller",
-        "IMU, attitude estimation, and sensor feedback for flight stabilization",
-        "Cascaded control loops for attitude, angular rate, altitude, and position",
-        "Safety checks, calibration, and experimental workflow for drone control"
+        "UAV applications and low-altitude economy",
+        "Basic quadrotor dynamics and underactuation",
+        "Differential flatness and trajectory generation",
+        "External localization, onboard perception, and SLAM",
+        "Path planning, trajectory generation, high-level control, and PX4",
+        "End-to-end autonomous flight with AI: potential and limitations"
       ],
-      "lab": "Identify the drone hardware modules, understand the signal flow from sensors to control outputs, and analyze the basic flight-control architecture.",
-      "id": "lecture-06"
+      "lab": "Understand the autonomy stack of quadrotor UAVs and connect perception, planning, and control modules.",
+      "id": "lecture-06",
+      "pdf": "downloads/slides/Lecture06_Overview_of_Autonomous_Quadrotor_UAV_Research.pdf"
     },
     {
       "no": 7,
