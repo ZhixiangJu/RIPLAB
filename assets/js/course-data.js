@@ -146,8 +146,8 @@ window.COURSE_DATA = {
       "pdf": "downloads/manuals/RIP_Class8_Hardware_Wiring_Guide.pdf",
       "extraDownloads": [
         {
-          "label": "Bellman-to-RL Theory (TeX)",
-          "file": "downloads/theory/Bellman_to_RL_Supplement.tex"
+          "label": "Bellman-to-RL Theory (PDF)",
+          "file": "downloads/theory/Bellman_to_RL_Supplement.pdf"
         }
       ]
     },
