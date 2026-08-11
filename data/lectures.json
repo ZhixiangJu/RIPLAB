@@ -111,7 +111,7 @@
     ],
     "lab": "Run sensor and motor tests and collect calibrated experimental data.",
     "id": "lecture-08",
-    "pdf": "downloads/slides/Lecture08_Hardware_Assembly_Sensor_Test_and_Bellman_Bridge.pdf"
+    "pdf": "downloads/manuals/RIP_Class8_Hardware_Wiring_Guide.pdf"
   },
   {
     "no": 9,
@@ -125,7 +125,7 @@
     ],
     "lab": "Run LQR and MPC experiments and compare time-domain responses.",
     "id": "lecture-09",
-    "pdf": "downloads/slides/Lecture09_Optimal_Control_Experiments_on_RIP.pdf"
+    "pdf": "downloads/manuals/RIP_Class9_LQR_Technical_Manual.pdf"
   },
   {
     "no": 10,
@@ -139,7 +139,7 @@
     ],
     "lab": "Compare direct numerical derivatives with observer-estimated states.",
     "id": "lecture-10",
-    "pdf": "downloads/slides/Lecture10_State_Observers_for_RIP_Control.pdf"
+    "pdf": "downloads/manuals/RIP_Class10_MPC_Technical_Manual.pdf"
   },
   {
     "no": 11,
@@ -153,7 +153,7 @@
     ],
     "lab": "Train and evaluate RL policies in simulation.",
     "id": "lecture-11",
-    "pdf": "downloads/slides/Lecture11_DQN_PPO_TD3_RIP_Simulation_Training.pdf"
+    "pdf": "downloads/manuals/RIP_Class11_DQN_Technical_Manual.pdf"
   },
   {
     "no": 12,
@@ -167,7 +167,7 @@
     ],
     "lab": "Deploy trained policies and record sim-to-real experimental data.",
     "id": "lecture-12",
-    "pdf": "downloads/slides/Lecture12_RL_Sim_to_Real_Deployment.pdf"
+    "pdf": "downloads/manuals/RIP_Class12_PPO_Technical_Manual.pdf"
   },
   {
     "no": 13,
@@ -181,7 +181,7 @@
     ],
     "lab": "Complete the final demonstration and compare control strategies.",
     "id": "lecture-13",
-    "pdf": "downloads/slides/Lecture13_Hybrid_Control_Sim_to_Real_Improvement_and_Final_Demo.pdf"
+    "pdf": "downloads/manuals/RIP_Class13_TD3_Technical_Manual.pdf"
   },
   {
     "no": 14,

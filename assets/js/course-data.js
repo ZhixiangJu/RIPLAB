@@ -143,7 +143,13 @@ window.COURSE_DATA = {
       ],
       "lab": "Run sensor and motor tests and collect calibrated experimental data.",
       "id": "lecture-08",
-      "pdf": "downloads/slides/Lecture08_Hardware_Assembly_Sensor_Test_and_Bellman_Bridge.pdf"
+      "pdf": "downloads/manuals/RIP_Class8_Hardware_Wiring_Guide.pdf",
+      "extraDownloads": [
+        {
+          "label": "Bellman-to-RL Theory (TeX)",
+          "file": "downloads/theory/Bellman_to_RL_Supplement.tex"
+        }
+      ]
     },
     {
       "no": 9,
@@ -157,7 +163,7 @@ window.COURSE_DATA = {
       ],
       "lab": "Run LQR and MPC experiments and compare time-domain responses.",
       "id": "lecture-09",
-      "pdf": "downloads/slides/Lecture09_Optimal_Control_Experiments_on_RIP.pdf"
+      "pdf": "downloads/manuals/RIP_Class9_LQR_Technical_Manual.pdf"
     },
     {
       "no": 10,
@@ -171,7 +177,7 @@ window.COURSE_DATA = {
       ],
       "lab": "Compare direct numerical derivatives with observer-estimated states.",
       "id": "lecture-10",
-      "pdf": "downloads/slides/Lecture10_State_Observers_for_RIP_Control.pdf"
+      "pdf": "downloads/manuals/RIP_Class10_MPC_Technical_Manual.pdf"
     },
     {
       "no": 11,
@@ -185,7 +191,7 @@ window.COURSE_DATA = {
       ],
       "lab": "Train and evaluate RL policies in simulation.",
       "id": "lecture-11",
-      "pdf": "downloads/slides/Lecture11_DQN_PPO_TD3_RIP_Simulation_Training.pdf"
+      "pdf": "downloads/manuals/RIP_Class11_DQN_Technical_Manual.pdf"
     },
     {
       "no": 12,
@@ -199,7 +205,7 @@ window.COURSE_DATA = {
       ],
       "lab": "Deploy trained policies and record sim-to-real experimental data.",
       "id": "lecture-12",
-      "pdf": "downloads/slides/Lecture12_RL_Sim_to_Real_Deployment.pdf"
+      "pdf": "downloads/manuals/RIP_Class12_PPO_Technical_Manual.pdf"
     },
     {
       "no": 13,
@@ -213,7 +219,7 @@ window.COURSE_DATA = {
       ],
       "lab": "Complete the final demonstration and compare control strategies.",
       "id": "lecture-13",
-      "pdf": "downloads/slides/Lecture13_Hybrid_Control_Sim_to_Real_Improvement_and_Final_Demo.pdf"
+      "pdf": "downloads/manuals/RIP_Class13_TD3_Technical_Manual.pdf"
     },
     {
       "no": 14,
@@ -238,99 +244,7 @@ window.COURSE_DATA = {
       "id": "lecture-15"
     }
   ],
-  "codePackages": [
-    {
-      "classNo": 5,
-      "title": "CartPole DQN Practice Code",
-      "description": "Python code for CartPole reinforcement learning practice using DQN.",
-      "tags": [
-        "CartPole",
-        "DQN",
-        "Python",
-        "RL"
-      ],
-      "file": "downloads/code/Lecture05_CartPole_DQN_Practice_Code.zip",
-      "size": 3672
-    },
-    {
-      "classNo": 8,
-      "title": "Sensor and Motor Test Code",
-      "description": "STM32 firmware and Python logging scripts for potentiometer, encoder, and motor driver tests.",
-      "tags": [
-        "STM32",
-        "Sensors",
-        "Motor test",
-        "Python"
-      ],
-      "file": "downloads/code/Lecture08_Sensor_and_Motor_Test_Code.zip",
-      "size": 11815
-    },
-    {
-      "classNo": 9,
-      "title": "LQR and MPC Control Code",
-      "description": "Controller design scripts, embedded firmware, and logging tools for LQR and MPC experiments.",
-      "tags": [
-        "LQR",
-        "MPC",
-        "STM32",
-        "Python"
-      ],
-      "file": "downloads/code/Lecture09_LQR_and_MPC_Control_Code.zip",
-      "size": 12898
-    },
-    {
-      "classNo": 10,
-      "title": "Observer-Based Control Code",
-      "description": "Luenberger and Kalman observer scripts plus observer-based control experiment code.",
-      "tags": [
-        "Observer",
-        "Kalman",
-        "Luenberger",
-        "Control"
-      ],
-      "file": "downloads/code/Lecture10_Observer_Based_Control_Code.zip",
-      "size": 28066
-    },
-    {
-      "classNo": 11,
-      "title": "RL Simulation Training Code",
-      "description": "Simulation environments, training scripts, and evaluation tools for DQN, PPO, and TD3.",
-      "tags": [
-        "DQN",
-        "PPO",
-        "TD3",
-        "Simulation"
-      ],
-      "file": "downloads/code/Lecture11_RL_Simulation_Training_Code.zip",
-      "size": 64727
-    },
-    {
-      "classNo": 12,
-      "title": "RL Sim-to-Real Deployment Code",
-      "description": "Deployment firmware and PC-side logging tools for transferring RL policies to the physical RIP platform.",
-      "tags": [
-        "Deployment",
-        "STM32",
-        "RL",
-        "Sim-to-real"
-      ],
-      "file": "downloads/code/Lecture12_RL_Sim_to_Real_Deployment_Code.zip",
-      "size": 30890
-    },
-    {
-      "classNo": "Optional",
-      "title": "ROS2 RIP Workspace",
-      "description": "Source workspace for the optional ROS2-based rotary inverted pendulum platform, including interfaces, serial bridge, manager, visualizer, and launch package.",
-      "file": "downloads/code/rip_ros2_ws_source.zip",
-      "size": 303528,
-      "tags": [
-        "ROS2",
-        "RIP",
-        "Serial bridge",
-        "Visualizer"
-      ]
-    }
-  ],
+  "codePackages": [],
   "tasks": [
     {
       "classNo": 5,

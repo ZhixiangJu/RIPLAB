@@ -26,12 +26,16 @@ function lectureCard(lec) {
     .join('');
 
   const status = hasPdf
-    ? `<span class="status ready">Slides available</span>`
+    ? `<span class="status ready">Material available</span>`
     : `<span class="status pending">To be added</span>`;
 
   const download = hasPdf
     ? `<a class="download-btn" href="${esc(lec.pdf)}" download>Download PDF</a>`
     : `<span class="download-btn disabled">Reserved for later</span>`;
+
+  const extraDownloads = (lec.extraDownloads || [])
+    .map(item => `<a class="download-btn ghost" href="${esc(item.file)}" download>${esc(item.label)}</a>`)
+    .join('');
 
   return `
     <article class="lecture-card modern ${hasPdf ? '' : 'is-pending'}" id="${esc(lec.id || 'lecture-' + no)}">
@@ -57,6 +61,7 @@ function lectureCard(lec) {
 
         <div class="downloads">
           ${download}
+          ${extraDownloads}
         </div>
       </div>
     </article>

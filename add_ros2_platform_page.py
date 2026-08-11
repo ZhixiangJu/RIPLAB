@@ -8,72 +8,6 @@ import zipfile
 import html
 
 ROOT = Path.cwd()
-CODE_DIR = ROOT / "downloads" / "code"
-CODE_DIR.mkdir(parents=True, exist_ok=True)
-ZIP_OUT = CODE_DIR / "rip_ros2_ws_source.zip"
-
-
-def should_include_zip_entry(name: str) -> bool:
-    parts = [p for p in name.split("/") if p]
-    excluded_dirs = {"build", "install", "log", "__pycache__", ".git", ".vscode", ".idea"}
-    if any(p in excluded_dirs for p in parts):
-        return False
-    if any(p.startswith("backup_") for p in parts):
-        return False
-    base = parts[-1] if parts else ""
-    if base in {"0.0f"}:
-        return False
-    if base.endswith((".pyc", ".pyo", ".o", ".so", ".a", ".log", ".tmp", ".DS_Store")):
-        return False
-    return True
-
-
-def find_input_zip() -> Path | None:
-    candidates = []
-    if len(sys.argv) > 1:
-        candidates.append(Path(sys.argv[1]).expanduser())
-    home = Path.home()
-    candidates.extend([
-        home / "Downloads" / "rip_ros2_ws_source.zip",
-        home / "Downloads" / "rip_ros2_ws(2).zip",
-        home / "Downloads" / "rip_ros2_ws.zip",
-        home / "Desktop" / "rip_ros2_ws_source.zip",
-        home / "Desktop" / "rip_ros2_ws(2).zip",
-        home / "Desktop" / "rip_ros2_ws.zip",
-    ])
-    for p in candidates:
-        if p.exists() and p.is_file():
-            return p
-    return None
-
-
-def install_ros2_zip():
-    src = find_input_zip()
-    if src is None:
-        print("WARNING: no ROS2 workspace zip found. The page will still be created, but the download button will point to downloads/code/rip_ros2_ws_source.zip.")
-        print("Put rip_ros2_ws_source.zip into downloads/code later if needed.")
-        return
-
-    if src.name == "rip_ros2_ws_source.zip":
-        shutil.copy2(src, ZIP_OUT)
-        print(f"copied clean workspace zip: {ZIP_OUT}")
-        return
-
-    with zipfile.ZipFile(src) as zin, zipfile.ZipFile(ZIP_OUT, "w", zipfile.ZIP_DEFLATED) as zout:
-        kept = 0
-        for info in zin.infolist():
-            name = info.filename
-            if name.endswith("/") or not should_include_zip_entry(name):
-                continue
-            data = zin.read(name)
-            zi = zipfile.ZipInfo(name)
-            zi.date_time = (2026, 6, 17, 0, 0, 0)
-            zi.external_attr = 0o644 << 16
-            zout.writestr(zi, data)
-            kept += 1
-    print(f"created clean workspace zip: {ZIP_OUT} ({kept} files)")
-
-
 def nav_html() -> str:
     return """<header class="site-header">
     <a class="brand" href="index.html">
@@ -97,12 +31,6 @@ def nav_html() -> str:
 
 
 def page_html() -> str:
-    zip_exists = ZIP_OUT.exists()
-    zip_size = ZIP_OUT.stat().st_size if zip_exists else 0
-    size_text = ""
-    if zip_size:
-        size_text = f" ({zip_size / 1024:.0f} KB)" if zip_size < 1024 * 1024 else f" ({zip_size / 1024 / 1024:.1f} MB)"
-
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -126,7 +54,7 @@ def page_html() -> str:
         but it offers a practical route from embedded control to distributed robotic software.
       </p>
       <div class="downloads">
-        <a class="download-btn" href="downloads/code/rip_ros2_ws_source.zip" download>Download ROS2 Workspace{html.escape(size_text)}</a>
+        <span class="download-btn disabled">Course code: see course group</span>
         <a class="download-btn ghost" href="#quick-start">Quick Start</a>
       </div>
     </section>
@@ -203,8 +131,9 @@ def page_html() -> str:
           <code>pyserial</code>, <code>PyQt5</code>, <code>numpy</code>, and <code>matplotlib</code> on the experiment PC.
         </li>
         <li>
-          <strong>Unzip the workspace.</strong>
-          <pre><code>unzip rip_ros2_ws_source.zip
+          <strong>Obtain the workspace from the course group, then unzip it.</strong>
+          <pre><code># Obtain the ROS2 workspace from the course group
+cd rip_ros2_ws
 cd rip_ros2_ws</code></pre>
         </li>
         <li>
@@ -478,52 +407,13 @@ pre code {
     print("updated: assets/css/styles.css")
 
 
-def update_code_data():
-    if not ZIP_OUT.exists():
-        return
-
-    package = {
-        "classNo": "Optional",
-        "title": "ROS2 RIP Workspace",
-        "description": "Source workspace for the optional ROS2-based rotary inverted pendulum platform, including interfaces, serial bridge, manager, visualizer, and launch package.",
-        "file": "downloads/code/rip_ros2_ws_source.zip",
-        "size": ZIP_OUT.stat().st_size,
-        "tags": ["ROS2", "RIP", "Serial bridge", "Visualizer"]
-    }
-
-    data_code = ROOT / "data" / "code.json"
-    if data_code.exists():
-        code = json.loads(data_code.read_text(encoding="utf-8"))
-    else:
-        code = []
-
-    code = [p for p in code if p.get("file") != package["file"] and p.get("title") != package["title"]]
-    code.append(package)
-    data_code.write_text(json.dumps(code, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print("updated: data/code.json")
-
-    course_data_path = ROOT / "assets" / "js" / "course-data.js"
-    if course_data_path.exists():
-        s = course_data_path.read_text(encoding="utf-8")
-        m = re.search(r"window\.COURSE_DATA\s*=\s*(\{.*\})\s*;\s*$", s, flags=re.S)
-        if m:
-            combined = json.loads(m.group(1))
-            combined["codePackages"] = code
-            course_data_path.write_text("window.COURSE_DATA = " + json.dumps(combined, ensure_ascii=False, indent=2) + ";\n", encoding="utf-8")
-            print("updated: assets/js/course-data.js")
-        else:
-            print("WARNING: could not parse assets/js/course-data.js; data/code.json was updated only")
-
-
 def main():
     if not (ROOT / "assets" / "css" / "styles.css").exists():
         raise SystemExit("Run this script from the furuta_lab repository root, for example: cd ~/Desktop/furuta_lab")
 
-    install_ros2_zip()
     write_page()
     update_nav_links()
     append_css_once()
-    update_code_data()
 
     print("\nDone. Preview:")
     print("  python3 -m http.server 8000")
