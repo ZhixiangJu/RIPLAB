@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const code = document.querySelector('[data-code]');
-  if (code) {
+  if (code && COURSE_DATA.codePackages.length > 0) {
     code.innerHTML = COURSE_DATA.codePackages.map(codeCard).join('');
   }
 
