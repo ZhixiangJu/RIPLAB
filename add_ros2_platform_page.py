@@ -54,7 +54,8 @@ def page_html() -> str:
         but it offers a practical route from embedded control to distributed robotic software.
       </p>
       <div class="downloads">
-        <span class="download-btn disabled">Course code: see course group</span>
+        <a class="download-btn" href="downloads/code/RIP_ROS2_Optional_Platform_Code.zip" download>Download ROS2 Code</a>
+        <a class="download-btn ghost" href="downloads/code/RIP_Complete_Course_Code.zip" download>Download All RIP Code</a>
         <a class="download-btn ghost" href="#quick-start">Quick Start</a>
       </div>
     </section>
@@ -131,15 +132,17 @@ def page_html() -> str:
           <code>pyserial</code>, <code>PyQt5</code>, <code>numpy</code>, and <code>matplotlib</code> on the experiment PC.
         </li>
         <li>
-          <strong>Obtain the workspace from the course group, then unzip it.</strong>
-          <pre><code># Obtain the ROS2 workspace from the course group
-cd rip_ros2_ws
-cd rip_ros2_ws</code></pre>
+          <strong>Download and extract the ROS2 code package.</strong>
+          Download the <a href="downloads/code/RIP_ROS2_Optional_Platform_Code.zip" download>ROS2 ZIP package</a>
+          directly from this website, then open the included workspace.
+          <pre><code>unzip RIP_ROS2_Optional_Platform_Code.zip
+cd RIP_ROS2_Optional_Platform_Code/ros2/rip_ros2_ws</code></pre>
         </li>
         <li>
           <strong>Build the ROS2 packages.</strong>
-          <pre><code>source /opt/ros/foxy/setup.bash
-colcon build
+          <pre><code>source /opt/ros/jazzy/setup.bash
+rosdep install --from-paths src --ignore-src -r -y
+colcon build --symlink-install
 source install/setup.bash</code></pre>
         </li>
         <li>
