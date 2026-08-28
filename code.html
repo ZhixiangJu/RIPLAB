@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RIP Code · AI-Enabled Control Engineering</title>
-  <meta name="description" content="Course website for AI-Enabled Control Engineering, PKU College of Engineering GLOBEX Summer Program.">
+  <meta name="description" content="Public rotary inverted pendulum source code for AI-Enabled Control Engineering, PKU College of Engineering GLOBEX Summer Program.">
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -26,26 +26,49 @@
     </div>
   </nav>
 </header>
+
 <main class="container">
   <div class="section-head">
     <div>
       <h2>Rotary inverted pendulum course code</h2>
-      <p>Course code is distributed through the course group.</p>
+      <p>Public source code for simulation, hardware experiments, embedded firmware, reinforcement-learning training and deployment, and the ROS2 integration example.</p>
     </div>
   </div>
-  <div class="notice">
-    <strong>Course code.</strong>
-    Firmware, Python scripts, controller implementations,
-    reinforcement-learning training and deployment packages,
-    and ROS2 materials are distributed through the course group.
+
+  <article class="card" style="margin-bottom:22px;">
+    <div class="kicker">Public source repository</div>
+    <h3>AI-enabled Control Engineering Rotary Inverted Pendulum Lab</h3>
+    <p>The repository is the single source of truth for the course code. Students can browse individual modules below, clone the full repository, or download a ZIP snapshot of the current main branch.</p>
+    <div class="downloads">
+      <a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-" target="_blank" rel="noopener">Open GitHub Repository</a>
+      <a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/archive/refs/heads/main.zip">Download Full Source ZIP</a>
+    </div>
+    <pre><code>git clone https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-.git
+cd 2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-
+pip install -r requirements.txt</code></pre>
+  </article>
+
+  <div class="section-head"><div><h2 style="font-size:32px;">Classical control</h2><p>Each module contains simulation code plus hardware Python and firmware implementations.</p></div></div>
+  <div class="grid cards" style="margin-bottom:34px;">
+    <article class="card"><div class="kicker">Classical control</div><h3>Dual-loop PID</h3><p>Simulation, host-side hardware interface, experiment GUI, and microcontroller firmware.</p><div class="pill-row"><span class="pill">Simulation</span><span class="pill">Python</span><span class="pill">Firmware</span></div><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/classical_control/dual_loop_pid" target="_blank" rel="noopener">Browse PID Code</a></div></article>
+    <article class="card"><div class="kicker">Optimal control</div><h3>LQR</h3><p>State-feedback simulation, physical-platform Python tools, and matching embedded firmware.</p><div class="pill-row"><span class="pill">State feedback</span><span class="pill">Hardware</span><span class="pill">Firmware</span></div><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/classical_control/lqr" target="_blank" rel="noopener">Browse LQR Code</a></div></article>
+    <article class="card"><div class="kicker">Optimal control</div><h3>MPC</h3><p>Model-predictive-control simulation, hardware experiment interface, and firmware implementation.</p><div class="pill-row"><span class="pill">Prediction</span><span class="pill">Constraints</span><span class="pill">Hardware</span></div><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/classical_control/mpc" target="_blank" rel="noopener">Browse MPC Code</a></div></article>
+  </div>
+
+  <div class="section-head"><div><h2 style="font-size:32px;">Reinforcement learning</h2><p>DQN, PPO, and TD3 are separated into simulation training and physical-platform deployment packages.</p></div></div>
+  <div class="grid cards" style="margin-bottom:34px;">
+    <article class="card"><div class="kicker">Reinforcement learning</div><h3>DQN</h3><p>Discrete-action RIP training plus simulation testing and hardware deployment resources.</p><div class="pill-row"><span class="pill">Training</span><span class="pill">Deployment</span><span class="pill">Firmware</span></div><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/reinforcement_learning/training/dqn" target="_blank" rel="noopener">Training</a><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/reinforcement_learning/deployment/dqn" target="_blank" rel="noopener">Deployment</a></div></article>
+    <article class="card"><div class="kicker">Reinforcement learning</div><h3>PPO</h3><p>Continuous-control policy training and the corresponding physical-platform deployment package.</p><div class="pill-row"><span class="pill">Training</span><span class="pill">Deployment</span><span class="pill">Firmware</span></div><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/reinforcement_learning/training/ppo" target="_blank" rel="noopener">Training</a><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/reinforcement_learning/deployment/ppo" target="_blank" rel="noopener">Deployment</a></div></article>
+    <article class="card"><div class="kicker">Reinforcement learning</div><h3>TD3</h3><p>Continuous-control training, hardware deployment, firmware, and model-compatibility self-test resources.</p><div class="pill-row"><span class="pill">Training</span><span class="pill">Deployment</span><span class="pill">Self-test</span></div><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/reinforcement_learning/training/td3" target="_blank" rel="noopener">Training</a><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/reinforcement_learning/deployment/td3" target="_blank" rel="noopener">Deployment</a></div></article>
+  </div>
+
+  <div class="grid two">
+    <article class="card"><div class="kicker">Robotics integration</div><h3>ROS2 framework</h3><p>A common serial bridge, manager, visualization layer, and controller-selection framework for LQR, MPC, DQN, PPO, and TD3.</p><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/ros2" target="_blank" rel="noopener">Browse ROS2 Code</a><a href="ros2-platform.html">ROS2 Tutorial</a></div></article>
+    <article class="card"><div class="kicker">Documentation</div><h3>Wiring, manuals, and reports</h3><p>The source repository also contains the hardware wiring material, laboratory manuals, and report templates used with the code.</p><div class="downloads"><a href="https://github.com/ZhixiangJu/2026-AI-enabled-Control-Engineering-Rotary-Inverted-Pendulum-/tree/main/docs" target="_blank" rel="noopener">Browse Documentation</a><a href="tasks.html">Lab Tasks</a></div></article>
   </div>
 </main>
-<footer class="footer">
-  <div class="container">
-    <div><strong>AI-Enabled Control Engineering</strong><br>GLOBEX Summer Program · College of Engineering, Peking University</div>
-    <div>Instructor: Xun Huang · TAs: Zhixiang Ju, Haozhe Wang</div>
-  </div>
-</footer>
+
+<footer class="footer"><div class="container"><div><strong>AI-Enabled Control Engineering</strong><br>GLOBEX Summer Program · College of Engineering, Peking University</div><div>Instructor: Xun Huang · TAs: Zhixiang Ju, Haozhe Wang</div></div></footer>
 <script src="assets/js/course-data.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
