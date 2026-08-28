@@ -11,7 +11,7 @@ This is the English static course website for the PKU College of Engineering GLO
 
 - English homepage and navigation pages
 - Course schedule for Classes 6--12
-- Downloadable course PDFs, lab-report templates, and supplementary theory material
+- Downloadable course PDFs, lab-report templates, supplementary theory material, and RIP code packages
 - Rotary inverted pendulum code packages
 - Lab task/report guide page
 - Hardware and software resource page
@@ -32,8 +32,8 @@ open http://localhost:8000
 
 - Edit `data/lectures.json` for lecture titles, descriptions, and slide links.
 - Add PDFs to `downloads/slides/`.
-- Add source files to `downloads/sources/`.
-- Course code is distributed through the course group and is not hosted publicly.
+- Add student-facing RIP code ZIP files to `downloads/code/` and link them from `code.html`.
+- Keep stable ZIP filenames so existing course links continue to work when the source packages are refreshed.
 - Edit staff names in `data/course.json`, `staff.html`, and the footer inside each HTML page if needed.
 
 ## Deployment
